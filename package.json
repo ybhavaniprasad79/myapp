@@ -1,0 +1,12 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "This project refers to the implementation of an e-commerce application containing a structured front-end and a back-end; \r the front end is responsible for the user's interface and experiences, while back-end is engaged in business logics, operations with databases and APIs.\r # Milestone 2\r # Login Page - React & CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
