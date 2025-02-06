@@ -11,24 +11,24 @@ let userRoute= express.Router()
                                                   
 
                  
-// userRoute.post("/login", async (req, res) => {
-//     console.log(req.body)
+userRoute.post("/login", async (req, res) => {
+    console.log(req.body)
 
-//     try {
-//       const { email, pass , } = req.body;
+    try {
+      const { email, pass , } = req.body;
   
-//       if (email && pass) {
-//         let nweUser = new UserModel({ email, pass });
-//         await nweUser.save();
-//         res.status(200).send({ message: "login is success" });
-//       } else {
-//         res.status(400).send({ message: "🤞invalid" });
-//       }
-//     } catch (error) {
-//       res.status(500).send({ message: "internal server error" });
+      if (email && pass) {
+        let nweUser = new UserModel({ email, pass });
+        await nweUser.save();
+        res.status(200).send({ message: "login is success" });
+      } else {
+        res.status(400).send({ message: "🤞invalid" });
+      }
+    } catch (error) {
+      res.status(500).send({ message: "internal server error" });
   
-//     }
-//   });
+    }
+  });
 
 
 
