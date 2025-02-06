@@ -1,0 +1,15 @@
+meta {
+  name: upload
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8592/user/upload
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  photo: @file(C:\Users\Y BHAVANI PRASAD\OneDrive\Pictures\download (4).jpeg)
+}
