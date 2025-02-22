@@ -117,21 +117,35 @@ userRoute.post("/login",catchAsyncError(async (req, res, next) => {
     if (!email || !password) {
       next(new Errorhadler("email and password are reqires", 400));
     }
-
+    
     let user =await UserModel.findOne({ email });
+
+    console.log(user,"999999999999999");
+    
     if (!user) {
-      next(new Errorhadler("pls signup", 400));
+      next(new Errorhadler("please signup", 400));
     }
 
     if(!user.isActivated){
-      next(new Errorhadler("pls signup", 400));
+      next(new Errorhadler("please signup", 400));
     }
+  
     let isMatching = await bcrypt.compare(password, user.password);
   
     
     if (!isMatching) {
       next(new Errorhadler("password is incorrect", 400));
     }
+
+    await bcrypt.compare(password, user.password, function(err, result) {
+      if(err){
+        next(new Errorhadler("internal server error", 500));
+      }
+      if(!result){
+        next(new Errorhadler("password is incorrect", 400));
+      }
+
+
 
 
     let token = jwt.sign({ id: user._id }, process.env.SECRET, {
@@ -143,6 +157,8 @@ userRoute.post("/login",catchAsyncError(async (req, res, next) => {
     });
     
     res.status(200).json({status:true,message:"login successful"})
+
+  });
   })
 );
 

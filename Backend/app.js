@@ -1,5 +1,6 @@
 const express = require("express");
 const cors=require("cors");
+const ErrorMiddleware = require("./middleware/error");
 
 const app = express();
 app.use(express.json());
@@ -17,5 +18,7 @@ app.get("/test", async (req, res) => {
 });
 
 app.use("/user",userRoute)
+
+app.use(ErrorMiddleware);
 
 module.exports = { app };
