@@ -6,6 +6,7 @@ import Loginpage from "./pages/LoginPage";
 import Navbar from "./pages/Navebar";
 import Login from "./components/Login";
 import Signup from "./components/signup";
+import CreateProduct from "./pages/createProduct";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/Login" element={<Loginpage />}></Route>
+        <Route path="/create" element={<CreateProduct />}></Route>
       </Routes>
     </BrowserRouter>
   );
