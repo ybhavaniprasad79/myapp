@@ -237,3 +237,39 @@ In this milestone, we created a *product input form* that allows users to enter 
    ```bash
    git clone YOUR_REPOSITORY_LINK
    cd ecommerce-follow-along
+## *Milestone 10: Product Schema & API Endpoint*
+### *Overview*
+Defined *Product Schema* using Mongoose and implemented a *POST API endpoint*.
+
+### *Key Achievements*
+1. *Product Schema (Mongoose):*
+   js
+  const productSchema = new mongoose.Schema({
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    tags: { type: [String], required: true },
+    price: { type: Number, required: true },
+    stock: { type: Number, required: true },
+    category: { type: String, required: true },
+    images: { type: [String], required: true },
+    email: { 
+        type: String, 
+        required: true, 
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address'] 
+    }
+}, { timestamps: true });
+
+   
+2. **API Endpoint (/api/products)**
+   - Validates and stores product details in *MongoDB*.
+   - Ensures *data integrity & validation*.
+
+### *Technologies Used*
+- *Node.js & Express.js*
+- *MongoDB Atlas & Mongoose*
+- *Multer (for file uploads)*
+
+---
+
+## *Conclusion*
+This e-commerce project follows a structured milestone-based approach, ensuring a *scalable, secure, and fully functional* web application.

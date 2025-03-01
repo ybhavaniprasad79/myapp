@@ -8,9 +8,8 @@ const { sendMail } =require("../utils/mail")
 const upload=require("../middleware/multer")
 let userRoute= express.Router()
 
-                                                  
+       
 
-                 
 // userRoute.post("/login", async (req, res) => {
 //     console.log(req.body)
 
