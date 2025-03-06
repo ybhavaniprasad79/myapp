@@ -1,30 +1,59 @@
-export default function ProductCard({ name, image, description, price, onAddToCart }) {
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+
+export default function ProductCard({ _id,email, name, description, category, tags, price, stock, images ,role,dele}) {
+   console.log(dele)
+
+  let navigate =useNavigate()
+  
+  const edit =()=>{
+    navigate("/create" ,{state:{ _id,email, name, description, category, tags, price, stock, images ,role,edit:true}})
+  }
+
+ 
+
+
+
+  const editDeleleCom=()=>{
     return (
-      <div className="bg-white p-5 rounded-2xl shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
-        <div className="w-full relative">
-          <img
-            src={image}
-            alt={name}
-            className="w-full h-60 object-cover rounded-xl"
-          />
-          <div className="absolute top-2 right-2 bg-black text-white text-xs px-3 py-1 rounded-full shadow-md">
-            ${price}
-          </div>
-        </div>
-        <div className="mt-4">
-          <h2 className="text-xl font-semibold text-gray-800">{name}</h2>
-          <p className="text-sm text-gray-500 line-clamp-2 mt-1">{description}</p>
-        </div>
-        <div className="mt-4 flex flex-col gap-2">
-          <button className="w-full text-white px-5 py-2 rounded-lg bg-gradient-to-r from-gray-900 to-gray-700 hover:from-gray-700 hover:to-gray-900 transition-all">
-            More Info
-          </button>
-          <button 
-            onClick={onAddToCart} 
-            className="w-full text-white px-5 py-2 rounded-lg bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-700 transition-all">
-            Add to Cart
-          </button>
-        </div>
+      <div>
+        <button onClick={edit} className="w-full text-white px-4 py-1 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out">
+          edit
+        </button>
+        <button  onClick={dele} className="w-full text-white px-4 py-1 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out">
+          delete
+        </button>
+         
       </div>
-    );
+    )
+  }
+
+
+  return (
+    <div className="bg-white p-3 rounded-lg shadow-md transition-all transform hover:scale-105 hover:shadow-lg hover:cursor-pointer flex flex-col justify-between duration-300 ease-in-out max-w-xs">
+      <div className="w-full">
+       {console.log(role)}
+        <IoIosArrowBack/>
+        <img
+          src={`http://localhost:8080/products-photo/${images[0]}`} 
+          alt={name}
+          className="w-full h-48 object-cover rounded-lg mb-3 transition-transform duration-300 ease-in-out hover:scale-105"
+        />
+        <IoIosArrowForward/>
+        <h2 className="text-md font-semibold text-gray-800">{name}</h2>
+        <p className="text-sm text-gray-600 line-clamp-3 opacity-80">{description}</p>
+      </div>
+      <div className="w-full mt-3">
+        <p className="text-md font-semibold text-gray-900">${price}</p>
+        <button className="w-full text-white px-4 py-1 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out">
+          More Info
+        </button>
+
+        {role=="seller"&&editDeleleCom()}
+      </div>
+    </div>
+  );
 }

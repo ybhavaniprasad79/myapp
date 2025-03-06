@@ -5,7 +5,7 @@ const Errorhadler=require("../utils/errorhadler")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 const { sendMail } =require("../utils/mail")
-const upload=require("../middleware/multer")
+const {upload}=require("../middleware/multer")
 let userRoute= express.Router()
 
        

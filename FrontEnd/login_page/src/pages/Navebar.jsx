@@ -1,29 +1,159 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { IoClose } from "react-icons/io5";
 
-function Navebar() {
+const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <nav className="p-4 shadow-lg">
-      <ul className="flex justify-between px-10">
-        <li className="text-lg font-semibold">
-          <Link
-            to="/"
-            className="px-6 py-2 bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300"
-          >
-            Home
-          </Link>
-        </li>
-        <li className="text-lg font-semibold">
-          <Link
-            to="/login"
-            className="px-6 py-2 bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-transform transform hover:scale-105 duration-300"
-          >
-            Login
-          </Link>
-        </li>
-      </ul>
+    <nav className="bg-white shadow-lg fixed w-full z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo Section */}
+          <div className="text-blue-600 font-bold text-xl">Ecommerce</div>
+
+          {/* Desktop Navigation (All links aligned to one side) */}
+          <div className="hidden md:flex space-x-6 ml-auto">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-600 hover:text-blue-600"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/create"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-600 hover:text-blue-600"
+                }`
+              }
+            >
+              Add Products
+            </NavLink>
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-600 hover:text-blue-600"
+                }`
+              }
+            >
+              Cart
+            </NavLink>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-600 hover:text-blue-600"
+                }`
+              }
+            >
+              Login
+            </NavLink>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={toggleMenu}
+              type="button"
+              className="text-gray-600 hover:text-blue-600 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <IoClose size={24} /> : <GiHamburgerMenu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white py-2 px-4 shadow-lg border-t">
+          <ul className="space-y-2">
+            <li>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded-md text-base transition-all duration-300 ${
+                    isActive
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-600 hover:text-blue-600"
+                  }`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/create"
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded-md text-base transition-all duration-300 ${
+                    isActive
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-600 hover:text-blue-600"
+                  }`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                Add Products
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded-md text-base transition-all duration-300 ${
+                    isActive
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-600 hover:text-blue-600"
+                  }`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                Cart
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `block px-4 py-2 rounded-md text-base transition-all duration-300 ${
+                    isActive
+                      ? "text-blue-600 font-semibold"
+                      : "text-gray-600 hover:text-blue-600"
+                  }`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                Login
+              </NavLink>
+            </li>
+          </ul>
+        </div>
+      )}
     </nav>
   );
-}
+};
 
-export default Navebar;
+export default NavBar;

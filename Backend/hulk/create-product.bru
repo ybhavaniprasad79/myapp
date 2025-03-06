@@ -1,0 +1,22 @@
+meta {
+  name: create-product
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/product/create-product
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  email: ybhavaniprasad79@gmail.com
+  name: opihjg
+  description: dxfcvgbhj
+  category: eletronic
+  tags: drfgh,fdxgcfvgbh
+  price: 4567
+  stock: 1
+  images: @file(/home/tony/Pictures/Screenshots/Screenshot from 2025-03-04 17-59-39.png)
+}
