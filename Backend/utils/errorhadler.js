@@ -5,4 +5,5 @@ class Errorhadler extends Error{
         Error.captureStackTrace(this,this.constructure)
     }
 }
+
 module.exports=Errorhadler

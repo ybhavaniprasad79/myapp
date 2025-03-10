@@ -18,11 +18,6 @@ const transporter = nodemailer.createTransport({
     subject:options.subject,
     text:options.message,
   })
-
-
-
-
-
 }
 
 module.exports={sendMail}

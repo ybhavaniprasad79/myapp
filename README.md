@@ -436,3 +436,141 @@ In this milestone, we:
 Created an API endpoint to delete a product from MongoDB by ID.
 
 Added a delete button to the product card.
+
+
+
+# Milestone 15 - Navbar Component
+
+## Overview 
+In this milestone, we created a reusable Navbar component and integrated it into all the pages of our application. The navbar allows smooth navigation between different sections of our app, making it user-friendly and accessible on all screen sizes.
+
+## Learning Goals 
+By completing this milestone, we have learned:
+- How to create a Nav component.
+- How to reuse the same component across multiple pages.
+- How to make the Navbar responsive for different screen sizes.
+
+## Implementation Steps 
+1. **Created a new `Nav` component** with links to:
+   - Home
+   - My Products
+   - Add Product
+   - Cart
+2. **Ensured reusability** by adding the `Nav` component to all pages.
+3. **Implemented responsive design** to make the navbar adaptable to different screen sizes.
+4. **Tested navigation** to ensure smooth transitions between pages.
+
+## Milestone 16 - Product Info Page
+
+Overview 
+
+In this milestone, we created a Product Info Page that displays detailed product data, allows users to select a quantity, and includes an Add to Cart button.
+
+Learning Goals 
+
+By completing this milestone, we have learned:
+
+How to create a new page to display detailed product information.
+
+How to allow users to select a quantity before adding a product to the cart.
+
+How to implement an Add to Cart button for user interaction.
+
+Implementation Steps 
+
+Created a new Product Info Page that:
+
+Fetches and displays product details dynamically.
+
+Shows product name, image, price, and description.
+
+Allows users to select a quantity using increment and decrement buttons.
+
+Includes an Add to Cart button.
+
+Ensured smooth user experience by handling errors and responsiveness.
+
+Tested functionality to verify product data retrieval and cart integration.
+
+## Milestone 17: Add Products to Cart
+
+ Overview
+
+In this milestone, we will create a backend endpoint to add products to a user's cart and store them in the database.
+
+ Learning Goals
+
+By the end of this milestone, you will:
+
+Modify the user schema to store cart products.
+
+Write an endpoint to receive product details and store them in the cart.
+
+Steps to Implement
+
+1️ Update the User Schema
+
+Modify the existing user schema to include a cart field, which will store an array of cart items.
+
+2️ Create the Cart Schema (Optional)
+
+If needed, create a separate cart schema to manage cart items more effectively.
+
+3️ Write the Endpoint to Add Products to Cart
+
+Implement an API endpoint that allows users to add products to their cart.
+
+Ensure that the product details, including quantity, are stored properly.
+
+4️ Connect the Route to the Server
+
+Integrate the cart route into the main server file to enable functionality.
+
+Testing the Endpoint
+
+To test the API, use a tool like Postman or an API testing tool to send a request to add products to the cart.
+
+Endpoint: POST /cart/add
+
+Request Body: Contains user ID, product ID, and quantity.
+
+Expected Response: Confirms that the product has been successfully added to the cart.
+
+## Milestone 18
+Cart Page Backend Endpoint
+
+Overview
+
+This milestone focuses on creating a backend endpoint to fetch all products inside a user's cart. The endpoint will accept a user's email as a query parameter and return the corresponding cart details.
+
+Learning Goals:-
+
+By the end of this milestone, you will:
+
+Create an endpoint to receive requests from the cart page.
+
+Implement backend logic to fetch all products inside a user's cart using their email.
+
+Understand how to structure a cart retrieval API in an e-commerce application.
+
+Steps for Milestone 18 
+
+Create a Backend Endpoint for the Cart Page
+
+Implement a GET route to fetch a user's cart details.
+
+Write an Endpoint to Get Products Inside Cart for a User
+
+Accept email as a query parameter.
+
+Retrieve the user's cart using the provided email.
+
+Populate the cart items with product details.
+
+Return the cart details in JSON format.
+
+
+
+
+
+

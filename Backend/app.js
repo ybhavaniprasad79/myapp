@@ -4,20 +4,27 @@ const app = express();
 app.use(express.json());
 const ErrorMiddleware= require("./middleware/error")
 const path=require("path")
+const cookiepreser=require("cookie-parser")
 
+app.use(cookiepreser())
 app.use(cors({
-  origin:"*",
-  credentials:true
+  origin:"http://localhost:5173",
+  credentials:true,
+  allowedHeaders:["Content-Type","Authorization"]
 }))
 
 const {userRoute} = require('./controllers/userRoute');
 
 const productRouter = require("./controllers/ProductRoutes");
 
-
+  
 
 app.get("/test", async (req, res) => {
-  res.send("hello.....");
+  try {
+   res.status(200).send("djagwgyd")
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 

@@ -10,7 +10,7 @@ function CreateProduct() {
     
     const { _id, email, name, description, category, tags, price, stock, images, edit } = productData
 
-    console.log(images)
+ 
     
     let prevImg = []
     if (images) {
@@ -113,13 +113,14 @@ function CreateProduct() {
             const response = await axios.post("http://localhost:8080/product/create-product", multiPartFormData, {
                 headers: {
                     "Content-Type": "multipart/form-data"
-                },
+                }
             });
-
+            
             if (response.status === 201) {
                 console.log(response)
-                alert("Product Created Successfully");
                 setFormData({});
+                alert("Product Created Successfully");
+                
             }
         }
 
@@ -148,7 +149,7 @@ function CreateProduct() {
             });
         }
         try {
-            const response =await axios.put(`http://localhost:8080/product/update/${_id}`,multiPartFormData)
+            const response =await axios.put(`http://localhost:8080/product/update/${_id},multiPartFormData`)
             console.log(response)
         } catch (error) {
             console.log(error) 
@@ -218,7 +219,7 @@ function CreateProduct() {
                     </div>
 
                     <div className='flex flex-wrap gap-2 mt-2'>
-                        {formData.previewImg.map((img, index) => (
+                        {formData.previewImg&&formData.previewImg.map((img, index) => (
                           <div key={index}> 
                             <IoCloseCircleOutline onClick={()=>handleDeletePrevImg(index)} className='relative left-15 ' />
                             <img key={index} src={img} alt={`Preview ${index}`} className='w-20 h-20 object-cover rounded-md shadow-md' />
@@ -240,5 +241,4 @@ function CreateProduct() {
         </div>
     );
 }
-
 export default CreateProduct;

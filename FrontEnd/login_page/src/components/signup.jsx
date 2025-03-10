@@ -19,7 +19,7 @@ function Signup(props) {
     email: "",
     password: "",
     confirmpass: "",
-  });
+  }); 
 
   const handleForm = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -28,18 +28,17 @@ function Signup(props) {
 
   const handleSubmit = async () => {
     const { name, email, password, confirmpass } = data;
-    if (password !== confirmpass) {
-      setErr("Passwords do not match");
-      return;
-    }
     if (!name || !email || !password || !confirmpass) {
       setErr("Please fill all fields");
       return;
     }
-
+    if (password !== confirmpass) {
+      setErr("Passwords do not match");
+      return;
+    }
     try {
       await axios
-        .post("http://localhost:8975/user/signup", {
+        .post("http://localhost:8080/user/signup", {
           name,
           email,
           password,
@@ -51,7 +50,7 @@ function Signup(props) {
       setErr(resizeBy.data.message);
     }
   };
-
+  
   return (
     <>
       <div className="flex justify-center items-center min-h-screen bg-gray-100">

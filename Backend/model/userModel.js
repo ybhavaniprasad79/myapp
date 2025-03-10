@@ -25,6 +25,22 @@ const addressSchema=new mongoose.Schema({
 })
 
 
+
+const cartSchema = new mongoose.Schema({
+    productId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Product",
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      min: [1, "Quantity cannot be less than 1"],
+      default: 1,
+    },
+  });
+
+
 const userSchema =new mongoose.Schema({
     name:{
         type:String,
@@ -51,7 +67,8 @@ const userSchema =new mongoose.Schema({
     isActivated:{
         type:Boolean,
         default:false
-    }
+    },
+    cart:[cartSchema],
 
 })
 

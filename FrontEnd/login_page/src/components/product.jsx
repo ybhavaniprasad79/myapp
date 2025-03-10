@@ -1,59 +1,73 @@
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+import {motion} from "framer-motion"
 
-export default function ProductCard({ _id,email, name, description, category, tags, price, stock, images ,role,dele}) {
-   console.log(dele)
+export default function ProductCard({ _id, email, name, description, category, tags, price, stock, images, role, dele ,toCart}) {
+  let navigate = useNavigate();
 
-  let navigate =useNavigate()
-  
-  const edit =()=>{
-    navigate("/create" ,{state:{ _id,email, name, description, category, tags, price, stock, images ,role,edit:true}})
-  }
-
- 
+  const edit = () => {
+    navigate("/create", { state: { _id, email, name, description, category, tags, price, stock, images, role, edit: true } });
+  };
 
 
 
-  const editDeleleCom=()=>{
-    return (
-      <div>
-        <button onClick={edit} className="w-full text-white px-4 py-1 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out">
-          edit
-        </button>
-        <button  onClick={dele} className="w-full text-white px-4 py-1 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out">
-          delete
-        </button>
-         
-      </div>
-    )
-  }
-
+  const editDeleteButtons = () => (
+    <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 mt-3">
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={edit}
+        className="flex-1 text-white px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition-all duration-300"
+      >
+        Edit
+      </motion.button>
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={dele}
+        className="flex-1 text-white px-4 py-2 rounded-md bg-red-600 hover:bg-red-700 focus:ring-2 focus:ring-red-500 transition-all duration-300"
+      >
+        Delete
+      </motion.button>
+    </div>
+  );
 
   return (
-    <div className="bg-white p-3 rounded-lg shadow-md transition-all transform hover:scale-105 hover:shadow-lg hover:cursor-pointer flex flex-col justify-between duration-300 ease-in-out max-w-xs">
-      <div className="w-full">
-       {console.log(role)}
-        <IoIosArrowBack/>
-        <img
-          src={`http://localhost:8080/products-photo/${images[0]}`} 
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ scale: 1.05 }}
+      className="bg-white p-4 rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:shadow-2xl cursor-pointer flex flex-col justify-between max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg"
+    >
+      <div className="relative">
+        <IoIosArrowBack className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-2xl" />
+        <motion.img
+          src={`http://localhost:8080/products-photo/${images[0]}`}
           alt={name}
-          className="w-full h-48 object-cover rounded-lg mb-3 transition-transform duration-300 ease-in-out hover:scale-105"
+          className="w-full h-48 object-cover rounded-lg mb-3 transition-transform duration-300 ease-in-out hover:scale-110"
         />
-        <IoIosArrowForward/>
-        <h2 className="text-md font-semibold text-gray-800">{name}</h2>
-        <p className="text-sm text-gray-600 line-clamp-3 opacity-80">{description}</p>
+        <IoIosArrowForward className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 text-2xl" />
       </div>
-      <div className="w-full mt-3">
-        <p className="text-md font-semibold text-gray-900">${price}</p>
-        <button className="w-full text-white px-4 py-1 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out">
-          More Info
-        </button>
-
-        {role=="seller"&&editDeleleCom()}
-      </div>
-    </div>
+      <h2 className="text-lg font-semibold text-gray-800 mb-1">{name}</h2>
+      <p className="text-sm text-gray-600 opacity-80 line-clamp-3">{description}</p>
+      <p className="text-lg font-bold text-gray-900 mt-2">${price}</p>
+      {/* <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="w-full text-white px-4 py-2 mt-2 rounded-md bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 transition-all duration-300"
+      >
+        More Info
+      </motion.button> */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={toCart}
+        className="w-full text-white px-4 py-2 mt-2 rounded-md bg-green-600 hover:bg-green-700 focus:ring-2 focus:ring-green-500 transition-all duration-300"
+      >
+        More Info
+      </motion.button>
+      {role === "seller" && editDeleteButtons()}
+    </motion.div>
   );
 }
