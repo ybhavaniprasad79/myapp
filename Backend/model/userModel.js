@@ -20,6 +20,9 @@ const addressSchema=new mongoose.Schema({
     },
     area:{
         type:String
+    },
+    addressType:{
+        type:String
     }
 
 })
@@ -44,31 +47,31 @@ const cartSchema = new mongoose.Schema({
 const userSchema =new mongoose.Schema({
     name:{
         type:String,
-        require:true
+        required:true
     },
     email:{
         type:String,
-        require:true,
-        // unique:true,
-        // match:[/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/,"please add a valid email address"]
-    
+        required:true
     },
     password:{
         type:String,
-        require:true
+        required:true
     },
     role:{
         type:String,
-        default:"user"
+        default:"user",
+        enum:["user","seller","admin"]
     },
-    address:{
-        type:addressSchema
-    },
+    address:[{type:addressSchema}],
     isActivated:{
         type:Boolean,
         default:false
     },
-    cart:[cartSchema],
+    cart: [cartSchema],
+    profilePhoto:{
+        type:String
+    }
+
 
 })
 

@@ -10,14 +10,13 @@ app.use(cookiepreser())
 app.use(cors({
   origin:"http://localhost:5173",
   credentials:true,
-  allowedHeaders:["Content-Type","Authorization"]
 }))
 
 const {userRoute} = require('./controllers/userRoute');
 
 const productRouter = require("./controllers/ProductRoutes");
 
-  
+
 
 app.get("/test", async (req, res) => {
   try {

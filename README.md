@@ -439,6 +439,8 @@ Added a delete button to the product card.
 
 
 
+
+
 # Milestone 15 - Navbar Component
 
 ## Overview 
@@ -574,3 +576,63 @@ Return the cart details in JSON format.
 
 
 
+
+## Milestone 19 - Ecommerce Follow-Along Project
+
+Overview
+
+In Milestone 19, we implemented a Cart Page that displays products inside the cart. We also added functionality to increase and decrease the quantity of products using + and - buttons. Additionally, we created backend endpoints to handle these quantity updates.
+
+Learning Goals
+
+By completing this milestone, we:
+
+Built a frontend cart page that fetches and displays products.
+
+Added + and - buttons for quantity adjustments.
+
+Developed backend endpoints to modify product quantities in the cart.
+
+Steps Implemented
+
+Frontend (Cart Page UI)
+
+Fetched cart products from the API (built in Milestone 18).
+
+Displayed each product with an image, name, price, and quantity.
+
+Added + and - buttons to modify product quantity.
+
+Integrated API calls to update quantity when buttons are clicked.
+
+Backend (API Endpoints for Quantity Updates)
+
+Created an endpoint to increase product quantity.
+
+Created an endpoint to decrease product quantity (with a minimum limit of 1).
+
+Ensured data validation and error handling.
+
+## Milestone 20: Profile Page & User Data Endpoint
+Learning Goals 
+Create a backend endpoint to send user data.
+Develop a frontend profile page to display user details.
+Display profile photo, name, email, and addresses.
+Show an "Add Address" button and handle cases where no address exists.
+
+## Milestone 21: Address Input Form 
+Overview
+In this milestone, we created a frontend address input form that allows users to add a new address. The form includes fields for country, city, address lines, zip code, and address type.
+
+Features
+Address input form with fields:
+
+Country
+City
+Address Line 1
+Address Line 2 (Optional)
+Zip Code
+Address Type (Home/Work)
+ Stores user input in React state
+Navigates to the form when clicking "Add Address" in the profile page
+ On form submission, logs the data (to be sent to the backend later)

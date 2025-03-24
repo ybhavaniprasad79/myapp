@@ -9,7 +9,6 @@ let path=require('path')
 const mongoose=require("mongoose")
 const auth=require("../middleware/auth")
 
-
 productRouter.post("/create-product",productUpload.array("images",10), catchAsyncError(async(req, res, next)=>{
     const { email,name, description,category,tags,price,stock} = req.body;
 
@@ -21,6 +20,7 @@ productRouter.post("/create-product",productUpload.array("images",10), catchAsyn
     }
     let user=await UserModel.findOne({email})
     console.log(email)
+
     if(!user){
         return next(new Errorhadler("user is not exist",404))
     }
@@ -115,6 +115,22 @@ productRouter.post('/cart',auth, catchAsyncError(async (req, res, next) => {
     if (!product) {
         return next(new Errorhadler("Product not found", 404));
     }
+
+    if(update){
+        const cartItemIndex = user.cart.findIndex(
+            (item) => item.productId.toString() === productId
+        );
+        if (cartItemIndex > -1) {
+            user.cart[cartItemIndex].quantity = quantity;
+            await user.save();
+
+           return res.status(200).json({
+                 status: true,
+                 message: "Cart updated successfully",
+                cart: user.cart,
+            });
+        } 
+    }
    
     const cartItemIndex = user.cart.findIndex(
         (item) => item.productId.toString() === productId
@@ -135,10 +151,6 @@ productRouter.post('/cart',auth, catchAsyncError(async (req, res, next) => {
         cart: user.cart,
     });
   }));
-  
-  
-  
-  
   
   
   productRouter.get("/cart",auth,catchAsyncError(async(req,res,next)=>{
